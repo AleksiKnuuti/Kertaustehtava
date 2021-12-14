@@ -3,11 +3,11 @@ import requests
 import paho.mqtt.client as mqtt
 import time
 
-use_mqtt = False
+use_mqtt = True
 
 if use_mqtt:
     broker_address="broker.hivemq.com"
-    client = mqtt.Client("OmaYksikasitteinenTunnus") # luo uusi asiakas
+    client = mqtt.Client("Testi3000") # luo uusi asiakas
     client.connect(broker_address) #avaa yhteys brokerille
 
 #luetaan tiedosto
@@ -28,9 +28,9 @@ for line in file:
         jsonm = json.dumps(positionData, indent=True)
         print(jsonm)
         # lähetetään HTTP:lla
-        if False: #omalle palvelinohjelmalle tai Thingspeakiin
-            response = requests.post('http://localhost:5000/newmeasurement',data = jsonm)
+        if True: #omalle palvelinohjelmalle tai Thingspeakiin
+            response = requests.post('http://localhost:5000/newmeasurement/',data = jsonm)
             print(response)
         if use_mqtt:
-            client.publish("my_topic", jsonm)
+            client.publish("my_topicak", jsonm)
         time.sleep(1)        

@@ -11,14 +11,14 @@ def on_message(client, userdata, message):
 #broker_address="test.mosquitto.org"
 broker_address="broker.hivemq.com"
 
-client = mqtt.Client("MeasurementSubscriberPMX") # avaa yhteys brokerille
+client = mqtt.Client("MeasurementSubscriberAK1") # avaa yhteys brokerille
 client.on_message=on_message # asetetaan callback-funktio
 
 client.connect(broker_address) #avataa yhteys brokerille
 client.loop_start() # aloitetaan kuuntelusilmukka
 
 # tilataan viesti, jonka topic on ”meas”
-client.subscribe("meas_pmx") 
+client.subscribe("my_topicak") 
 
 time.sleep(100) # odotetaan 100 s
 client.loop_stop() # lopetetaan kuuntelu
